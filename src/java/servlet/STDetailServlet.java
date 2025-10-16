@@ -41,7 +41,7 @@ public class STDetailServlet extends HttpServlet {
             try {
                 totalRevenue = Double.parseDouble(totalRevenueStr);
             } catch (NumberFormatException e) {
-                System.out.println("Lỗi parse totalRevenue: " + e.getMessage());
+                System.out.println("Erros parse totalRevenue: " + e.getMessage());
             }
         }
 

@@ -6,15 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Box Office Revenue Report</title>
-    <link rel="stylesheet" type="text/css" href="css/MovieRevenueStatisticPage.css">
+    <link rel="stylesheet" href="css/MovieRevenueStatisticPage.css">
 </head>
 <body>
 <div class="container">
 
-    <!-- Date Input Panel -->
+    <!-- Left Panel: Date Selection -->
     <div class="left-panel">
         <h2>Box Office Revenue Report</h2>
-        <p class="note">Select a date range to generate the report 🎬</p>
+        <p class="note">Select a date range to generate the report 📅</p>
 
         <form action="MovieServlet" method="post">
             <label for="fromDate">From</label>
@@ -30,14 +30,19 @@
                 <button type="button" class="btn-back" onclick="window.location.href='StatServlet'">Back</button>
             </div>
         </form>
+
+        <% String error = (String) request.getAttribute("error"); %>
+        <% if (error != null) { %>
+            <p style="color:red;"><%= error %></p>
+        <% } %>
     </div>
 
-    <!-- Report Table Panel -->
+    <!-- Right Panel: Report Table -->
     <div class="right-panel">
         <%
+            List<StatMovie> movieList = (List<StatMovie>) request.getAttribute("movieList");
             String fromDate = (String) request.getAttribute("fromDate");
             String toDate = (String) request.getAttribute("toDate");
-            List<StatMovie> movieList = (List<StatMovie>) request.getAttribute("movieList");
         %>
 
         <h3>
@@ -60,22 +65,22 @@
             <tbody>
             <% if (movieList != null && !movieList.isEmpty()) {
                    int index = 1;
-                   for (StatMovie movie : movieList) { %>
+                   for (StatMovie m : movieList) { %>
 
-                       <!-- Form ẩn gửi dữ liệu chi tiết -->
-                       <form id="detailForm<%= movie.getMovieID() %>" action="DetailServlet" method="post" style="display:none;">
-                           <input type="hidden" name="movieID" value="<%= movie.getMovieID() %>">
-                           <input type="hidden" name="movieTitle" value="<%= movie.getTitle() %>">
+                       <!-- Hidden form to submit detail -->
+                       <form id="detailForm<%= m.getMovieID() %>" action="DetailServlet" method="post" style="display:none;">
+                           <input type="hidden" name="movieID" value="<%= m.getMovieID() %>">
+                           <input type="hidden" name="movieTitle" value="<%= m.getTitle() %>">
                            <input type="hidden" name="fromDate" value="<%= fromDate %>">
                            <input type="hidden" name="toDate" value="<%= toDate %>">
                        </form>
 
-                       <!-- Dòng hiển thị -->
-                       <tr style="cursor:pointer;" onclick="document.getElementById('detailForm<%= movie.getMovieID() %>').submit();">
+                       <!-- Table row -->
+                       <tr style="cursor:pointer;" onclick="document.getElementById('detailForm<%= m.getMovieID() %>').submit();">
                            <td><%= index++ %></td>
-                           <td><%= movie.getMovieID() %></td>
-                           <td><%= movie.getTitle() %></td>
-                           <td><%= String.format("%,.0f", movie.getTotalRevenue()) %></td>
+                           <td><%= m.getMovieID() %></td>
+                           <td><%= m.getTitle() %></td>
+                           <td><%= String.format("%,.0f", m.getTotalRevenue()) %></td>
                        </tr>
 
             <%   }
@@ -86,7 +91,6 @@
             <% } %>
             </tbody>
         </table>
-
     </div>
 </div>
 </body>

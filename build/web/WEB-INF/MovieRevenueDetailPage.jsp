@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.StatShowTime"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,11 @@
 <div class="container">
     <div class="right-panel">
         <%
-            List<StatShowTime> showtimeList = (List<StatShowTime>) request.getAttribute("showtimeList");
-            String movieTitle = (String) request.getAttribute("movieTitle");
-            String fromDate = (String) request.getAttribute("fromDate");
-            String toDate = (String) request.getAttribute("toDate");
-            Integer movieID = (Integer) request.getAttribute("movieID");
+            List<StatShowTime> showtimeList = (List<StatShowTime>) session.getAttribute("showtimeList");
+            String movieTitle = (String) session.getAttribute("movieTitle");
+            String fromDate = (String) session.getAttribute("fromDate");
+            String toDate = (String) session.getAttribute("toDate");
+            Integer movieID = (Integer) session.getAttribute("movieID");
         %>
 
         <h2>Showtime Revenue Statistics for 
@@ -38,8 +39,6 @@
             <tbody>
             <% if (showtimeList != null && !showtimeList.isEmpty()) {
                    for (StatShowTime st : showtimeList) { %>
-
-                       <!-- Form ẩn cho mỗi dòng -->
                        <form id="detailForm<%= st.getShowTimeID() %>" action="STDetailServlet" method="post" style="display:none;">
                            <input type="hidden" name="ShowtimeID" value="<%= st.getShowTimeID() %>">
                            <input type="hidden" name="movieTitle" value="<%= movieTitle %>">
@@ -52,8 +51,6 @@
                            <input type="hidden" name="toDate" value="<%= toDate %>">
                            <input type="hidden" name="movieID" value="<%= movieID %>">
                        </form>
-
-                       <!-- Dòng hiển thị -->
                        <tr style="cursor:pointer;" onclick="document.getElementById('detailForm<%= st.getShowTimeID() %>').submit();">
                            <td><%= st.getShowTimeID() %></td>
                            <td>
@@ -68,17 +65,14 @@
             <%       }
                } else { %>
                    <tr>
-                       <td colspan="4" style="text-align:center;">No data found for the selected date range.</td>
+                       <td colspan="4" style="text-align:center;">No data available in session.</td>
                    </tr>
             <% } %>
             </tbody>
         </table>
-
-        <!-- Back -->
         <div class="btn-container">
             <form action="MovieServlet" method="post">
-                <input type="hidden" name="fromDate" value="<%= fromDate %>">
-                <input type="hidden" name="toDate" value="<%= toDate %>">
+                <input type="hidden" name="back" value="true">
                 <button type="submit" class="btn-back">Back</button>
             </form>
         </div>

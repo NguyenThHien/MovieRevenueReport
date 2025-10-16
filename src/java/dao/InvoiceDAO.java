@@ -2,13 +2,19 @@ package dao;
 
 import java.sql.*;
 import java.util.*;
-import model.*;
+import model.Invoice;
 import util.dbConnection;
 
 public class InvoiceDAO {
 
-    // Hàm lấy danh sách hóa đơn theo showTimeID, sắp xếp theo doanh thu giảm dần
-    public List<Invoice> getInvoice(int showTimeId) {
+    private Connection con;
+
+    public InvoiceDAO() {
+            con = dbConnection.getConnection();
+    }
+
+    // Lấy danh sách hóa đơn theo showTimeID 
+    public List<Invoice> getInvoice(int showTimeID) {
         List<Invoice> invoices = new ArrayList<>();
 
         String sql = """
@@ -23,22 +29,21 @@ public class InvoiceDAO {
             JOIN tblShowTimeSeat sts ON t.tblShowTimeSeatid = sts.id
             WHERE sts.tblShowTimeid = ?
             GROUP BY i.id, i.issueDate, i.paymentMethod, i.issueTime
-            ORDER BY totalAmount DESC;
+            ORDER BY totalAmount DESC
         """;
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, showTimeId);
+            ps.setInt(1, showTimeID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Invoice invoice = new Invoice();
                 invoice.setInvoiceID(rs.getString("invoiceID"));
-                invoice.setTotalAmount(rs.getFloat("totalAmount"));
                 invoice.setIssueDate(rs.getDate("issueDate"));
-                invoice.setPaymentMethod(rs.getString("paymentMethod"));
                 invoice.setIssueTime(rs.getTime("issueTime"));
+                invoice.setPaymentMethod(rs.getString("paymentMethod"));
+                invoice.setTotalAmount(rs.getFloat("totalAmount"));
                 invoices.add(invoice);
             }
 
@@ -46,6 +51,7 @@ public class InvoiceDAO {
             e.printStackTrace();
         }
 
+      
         return invoices;
     }
 }

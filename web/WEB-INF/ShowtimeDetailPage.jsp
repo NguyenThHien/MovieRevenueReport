@@ -71,10 +71,7 @@
        
         <div class="btn-container">
             <form action="DetailServlet" method="post">
-                <input type="hidden" name="movieID" value="<%= request.getAttribute("movieID") %>">
-                <input type="hidden" name="movieTitle" value="<%= request.getAttribute("movieTitle") %>">
-                <input type="hidden" name="fromDate" value="<%= request.getAttribute("fromDate") %>">
-                <input type="hidden" name="toDate" value="<%= request.getAttribute("toDate") %>">
+                <input type="hidden" name="back" value="true">
                 <button type="submit" class="btn-back">Back</button>
             </form>
         </div>

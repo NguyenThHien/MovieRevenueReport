@@ -8,7 +8,14 @@ import util.dbConnection;
 
 public class StatMovieDAO {
 
-    // Lấy toàn bộ danh sách StatMovie trong khoảng thời gian
+    
+    private Connection con;
+
+    public StatMovieDAO() {
+        con = dbConnection.getConnection();
+    }
+
+    // Lấy toàn bộ danh sách StatMovie trong khoảng thời gian theo hóa đơn
     public List<StatMovie> getAllStatMovie(Date startDate, Date endDate) {
         List<StatMovie> list = new ArrayList<>();
 
@@ -27,9 +34,7 @@ public class StatMovieDAO {
             ORDER BY totalRevenue DESC, m.id ASC
         """;
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setDate(1, startDate);
             ps.setDate(2, endDate);
 
@@ -46,6 +51,7 @@ public class StatMovieDAO {
             e.printStackTrace();
         }
 
+        
         return list;
     }
 }
