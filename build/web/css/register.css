@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+    display: flex;
+    justify-content: center; /* căn giữa ngang */
+    align-items: center;     /* căn giữa dọc */
+    height: 100vh;           /* full màn hình */
+    overflow: hidden;        /* loại bỏ scroll */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 350px;            /* nhỏ hơn */
+    padding: 20px 25px;      /* giảm padding */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 90vh;        /* không quá cao */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;     /* giảm margin */
+    font-size: 1.3rem;       /* nhỏ hơn */
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 4px;      /* giảm margin */
+    font-weight: bold;
+    font-size: 0.85rem;      /* nhỏ hơn */
+}
+
+.register-form input,
+.register-form textarea {
+    width: 100%;
+    padding: 6px;            /* giảm padding */
+    margin-bottom: 10px;     /* giảm margin */
+    border-radius: 6px;      /* nhỏ hơn */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 0.85rem;      /* nhỏ hơn */
+}
+
+.gender {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 8px 0;           /* giảm padding */
+    width: 48%;
+    border: none;
+    border-radius: 50px;
+    background-color: #ff7fbf;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;       /* nhỏ hơn */
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff4d94;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #999;
+    color: #fff;
+}
+
