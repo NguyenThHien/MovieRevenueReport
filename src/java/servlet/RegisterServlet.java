@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
           
             if (success) {
                 request.setAttribute("message", "Registration successful! You can now log in.");
-                request.getRequestDispatcher("/WEB-INF/CustomerHomeScreen.jsp").forward(request, response);
+                request.getRequestDispatcher("/CustomerHomeScreen.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Registration failed. Please try again.");
                 request.getRequestDispatcher("/WEB-INF/MemberRegistrationPage.jsp").forward(request, response);

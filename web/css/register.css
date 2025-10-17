@@ -1,90 +1,162 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+/* BACKGROUND */
+.page-bg {
+    min-height: 100vh;
     display: flex;
-    justify-content: center; /* căn giữa ngang */
-    align-items: center;     /* căn giữa dọc */
-    height: 100vh;           /* full màn hình */
-    overflow: hidden;        /* loại bỏ scroll */
-}
-
-.container {
-    background-color: rgba(255, 255, 255, 0.95);
-    width: 350px;            /* nhỏ hơn */
-    padding: 20px 25px;      /* giảm padding */
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    max-height: 90vh;        /* không quá cao */
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 15px;     /* giảm margin */
-    font-size: 1.3rem;       /* nhỏ hơn */
-}
-
-.register-form label {
-    display: block;
-    margin-bottom: 4px;      /* giảm margin */
-    font-weight: bold;
-    font-size: 0.85rem;      /* nhỏ hơn */
-}
-
-.register-form input,
-.register-form textarea {
-    width: 100%;
-    padding: 6px;            /* giảm padding */
-    margin-bottom: 10px;     /* giảm margin */
-    border-radius: 6px;      /* nhỏ hơn */
-    border: 1px solid #ccc;
+    background: linear-gradient(135deg, #ffe7ec 0%, #ffdfe6 50%, #fff0f5 100%);
+    padding: 30px;
     box-sizing: border-box;
-    font-size: 0.85rem;      /* nhỏ hơn */
 }
 
+/* CARD */
+.container {
+    width: 420px;
+    max-width: calc(100% - 40px);
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 12px 30px rgba(18, 25, 40, 0.12);
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+/* HEADER */
+.container h1 {
+    margin: 0 0 16px 0;
+    text-align: center;
+    font-size: 1.45rem;
+    color: #2b2b2b;
+    letter-spacing: 0.2px;
+}
+
+/* server error */
+.server-error {
+    background: #fff1f2;
+    color: #8b1d1d;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(139,29,29,0.08);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* FIELDS */
+.field {
+    margin-bottom: 12px;
+}
+.field label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* input styles */
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="email"],
+.register-form input[type="tel"],
+.register-form input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e1e6ee;
+    background: #fbfdff;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    transition: all 0.15s ease;
+    outline: none;
+    color: #222;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* focus */
+.register-form input:focus {
+    border-color: #ff8fb7;
+    box-shadow: 0 0 0 4px rgba(255,143,183,0.08);
+}
+
+/* hint text */
+.hint {
+    display: block;
+    font-size: 0.82rem;
+    color: #7a7a7a;
+    margin-top: 6px;
+}
+
+/* gender layout */
 .gender {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 12px;
     align-items: center;
 }
+.gender label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
 
+/* errors */
+.error {
+    color: #d6334f;
+    font-size: 0.84rem;
+    margin-top: 6px;
+    display: block;
+    min-height: 18px;
+}
+input.error-input {
+    border-color: #d6334f !important;
+    box-shadow: 0 0 0 4px rgba(214,51,79,0.06);
+}
+
+/* two columns for DOB + gender on one row */
+.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* buttons */
 .form-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+    gap: 12px;
+    margin-top: 14px;
 }
-
 .btn {
-    padding: 8px 0;           /* giảm padding */
-    width: 48%;
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 999px;
     border: none;
-    border-radius: 50px;
-    background-color: #ff7fbf;
-    color: white;
-    font-weight: bold;
     cursor: pointer;
-    font-size: 0.85rem;       /* nhỏ hơn */
-    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
+.btn:active { transform: translateY(1px); }
 
-.btn:hover {
-    background-color: #ff4d94;
-}
-
-.cancel-btn {
-    background-color: #ccc;
-    color: #333;
-}
-
-.cancel-btn:hover {
-    background-color: #999;
+.btn.primary {
+    background: linear-gradient(90deg, #ff96c7, #ff6fa6);
     color: #fff;
+    box-shadow: 0 6px 18px rgba(255,111,166,0.18);
+}
+.btn.primary:hover {
+    box-shadow: 0 10px 26px rgba(255,111,166,0.22);
 }
 
+.btn.ghost {
+    background: #f3f4f6;
+    color: #333;
+    border: 1px solid #e6e9ee;
+}
+.btn.ghost:hover {
+    background: #e9edf3;
+}
+
+/* responsive nhỏ */
+@media (max-width: 480px) {
+    .container { width: 100%; padding: 18px; border-radius: 14px; }
+    .two-cols { grid-template-columns: 1fr; }
+}
