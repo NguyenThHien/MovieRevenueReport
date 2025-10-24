@@ -8,7 +8,8 @@
             <file>file:/E:/CinaMen_PTTK/src/java/servlet/STDetailServlet.java</file>
             <file>file:/E:/CinaMen_PTTK/web/WEB-INF/StatisticMenuPage.jsp</file>
             <file>file:/E:/CinaMen_PTTK/src/java/servlet/StatServlet.java</file>
-            <file>file:/E:/CinaMen_PTTK/web/css/register.css</file>
+            <file>file:/E:/CinaMen_PTTK/src/java/util/dbConnection.java</file>
+            <file>file:/E:/CinaMen_PTTK/web/WEB-INF/Login.jsp</file>
             <file>file:/E:/CinaMen_PTTK/src/java/servlet/RegisterServlet.java</file>
             <file>file:/E:/CinaMen_PTTK/web/WEB-INF/ManagerHomeScreen.jsp</file>
             <file>file:/E:/CinaMen_PTTK/web/WEB-INF/MovieRevenueDetailPage.jsp</file>
@@ -19,10 +20,10 @@
             <file>file:/E:/CinaMen_PTTK/src/java/dao/StatShowTimeDAO.java</file>
             <file>file:/E:/CinaMen_PTTK/web/WEB-INF/MemberRegistrationPage.jsp</file>
             <file>file:/E:/CinaMen_PTTK/src/java/dao/InvoiceDAO.java</file>
-            <file>file:/E:/CinaMen_PTTK/web/css/MovieRevenueStatisticPage.css</file>
             <file>file:/E:/CinaMen_PTTK/web/WEB-INF/ShowtimeDetailPage.jsp</file>
             <file>file:/E:/CinaMen_PTTK/src/java/dao/CustomerDAO.java</file>
             <file>file:/E:/CinaMen_PTTK/web/CustomerHomeScreen.jsp</file>
+            <file>file:/E:/CinaMen_PTTK/src/java/dao/ManagerDAO.java</file>
             <file>file:/E:/CinaMen_PTTK/src/java/model/ShowTime.java</file>
         </group>
     </open-files>

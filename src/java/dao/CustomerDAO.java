@@ -11,14 +11,6 @@ import util.dbConnection;
 public class CustomerDAO {
     private Connection con;
 
-    private static final String SQL_CHECK =
-        "SELECT COUNT(*) FROM tblmember WHERE username = ? OR email = ? OR phoneNumber = ?";
-    private static final String SQL_INSERT_MEMBER =
-        "INSERT INTO tblmember (fullname, username, password, email, phoneNumber, role, dateOfBirth, address, gender) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_INSERT_CUSTOMER =
-        "INSERT INTO tblcustomer (tblMemberId) VALUES (?)";
-
    
     public CustomerDAO() {
         this.con = dbConnection.getConnection();
@@ -26,6 +18,13 @@ public class CustomerDAO {
 
     
     public boolean register(Customer customer) {
+        String SQL_CHECK =
+        "SELECT COUNT(*) FROM tblmember WHERE username = ? OR email = ? OR phoneNumber = ?";
+        String SQL_INSERT_MEMBER =
+        "INSERT INTO tblmember (fullname, username, password, email, phoneNumber, role, dateOfBirth, address, gender) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL_INSERT_CUSTOMER =
+        "INSERT INTO tblcustomer (tblMemberId) VALUES (?)";
         if (con == null) {
             System.out.println("Connection is null!");
             return false;

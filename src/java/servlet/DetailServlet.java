@@ -15,56 +15,79 @@ public class DetailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Khởi tạo giá trị mặc định
+        String movieTitle = request.getParameter("movieTitle") != null ? request.getParameter("movieTitle") : "Unknown Movie";
+        String fromDateStr = request.getParameter("fromDate");
+        String toDateStr = request.getParameter("toDate");
+        String movieIDStr = request.getParameter("movieID");
+        String pageStr = request.getParameter("page"); // Trang hiện tại của trang này (do Back hoặc pagination gửi)
+        String moviePageStr = request.getParameter("moviePage"); // Trang của Movie Report (do trang trước gửi)
 
-        HttpSession session = request.getSession();
-        // Nếu click back, lấy dữ liệu từ session thay vì load lại
-        String back = request.getParameter("back");
-        if ("true".equals(back)) {
-            // Kiểm tra session có dữ liệu không
-            List<StatShowTime> showtimeList = (List<StatShowTime>) session.getAttribute("showtimeList");
-            if (showtimeList != null) {
-                request.setAttribute("showtimeList", showtimeList);
-                request.setAttribute("fromDate", session.getAttribute("fromDate"));
-                request.setAttribute("toDate", session.getAttribute("toDate"));
-                request.setAttribute("movieTitle", session.getAttribute("movieTitle"));
-                request.setAttribute("movieID", session.getAttribute("movieID"));
-            }
-            request.getRequestDispatcher("/WEB-INF/MovieRevenueDetailPage.jsp").forward(request, response);
-            return;
-        }
+        int movieID = 0;
+        int moviePage = 1; // Trang của Movie Report
+        int currentPage = 1; // Trang hiện tại của servlet này (danh sách suất chiếu)
+        int recordsPerPage = 3; //  suất chiếu/trang
+        Date startDate = null;
+        Date endDate = null;
 
         try {
-            int movieID = Integer.parseInt(request.getParameter("movieID"));
-            String movieTitle = request.getParameter("movieTitle");
-            String fromDateStr = request.getParameter("fromDate");
-            String toDateStr = request.getParameter("toDate");
+            // Parse các tham số
+            if (movieIDStr != null) movieID = Integer.parseInt(movieIDStr);
+            if (fromDateStr != null) startDate = Date.valueOf(fromDateStr);
+            if (toDateStr != null) endDate = Date.valueOf(toDateStr);
 
-            Date startDate = Date.valueOf(fromDateStr);
-            Date endDate = Date.valueOf(toDateStr);
+            // Parse trang của Movie Report
+            if (moviePageStr != null && !moviePageStr.isEmpty()) {
+                try { moviePage = Integer.parseInt(moviePageStr); } catch (NumberFormatException e) { moviePage = 1; }
+            }
+             // Parse trang hiện tại của trang này
+            if (pageStr != null && !pageStr.isEmpty()) {
+                try { currentPage = Integer.parseInt(pageStr); } catch (NumberFormatException e) { currentPage = 1; }
+            }
+            if (currentPage < 1) currentPage = 1;
 
-            // Lấy dữ liệu từ DAO
-            StatShowTimeDAO dao = new StatShowTimeDAO();
-            List<StatShowTime> showtimeList = dao.getAllStatShowtime(movieID, startDate, endDate);
+            // Gọi DAO
+            List<StatShowTime> showtimeList = null;
+            int totalPages = 1;
+            if (movieID > 0 && startDate != null && endDate != null) {
+                StatShowTimeDAO dao = new StatShowTimeDAO();
+                int totalRecords = dao.getTotalShowtimeCount(movieID, startDate, endDate);
+                totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+                if (totalPages < 1) totalPages = 1;
+                if (currentPage > totalPages) currentPage = totalPages;
 
-            // Lưu vào session
-            session.setAttribute("showtimeList", showtimeList);
-            session.setAttribute("fromDate", fromDateStr);
-            session.setAttribute("toDate", toDateStr);
-            session.setAttribute("movieTitle", movieTitle);
-            session.setAttribute("movieID", movieID);
+                showtimeList = dao.getStatShowtimesByPage(movieID, startDate, endDate, currentPage, recordsPerPage);
+                request.setAttribute("showtimeList", showtimeList);
+                request.setAttribute("totalPages", totalPages);
+            } else {
+                 request.setAttribute("error", "Missing required parameters.");
+            }
 
-            // Gửi dữ liệu sang JSP
-            request.setAttribute("showtimeList", showtimeList);
+            // Gửi sang JSP
             request.setAttribute("fromDate", fromDateStr);
             request.setAttribute("toDate", toDateStr);
             request.setAttribute("movieTitle", movieTitle);
             request.setAttribute("movieID", movieID);
+            request.setAttribute("currentPage", currentPage); // Trang hiện tại của trang này
+            request.setAttribute("recordsPerPage", recordsPerPage);
+
+            //nút Back về trang 
+            request.setAttribute("showtimeListPage", currentPage); 
+            request.setAttribute("moviePage", moviePage); 
 
             request.getRequestDispatcher("/WEB-INF/MovieRevenueDetailPage.jsp").forward(request, response);
 
-        } catch (IllegalArgumentException e) {
-            request.setAttribute("error", "Please select a valid time period");
-            request.getRequestDispatcher("/WEB-INF/MovieRevenueDetailPage.jsp").forward(request, response);
+        } catch (IllegalArgumentException | NullPointerException e) { 
+             request.setAttribute("error", "Invalid or missing date format/value.");
+             request.setAttribute("fromDate", fromDateStr);
+             request.setAttribute("toDate", toDateStr);
+             request.setAttribute("moviePage", moviePage); 
+             request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
+        } catch (Exception e) {
+             e.printStackTrace();
+             request.setAttribute("error", "An unexpected error occurred.");
+             request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
         }
     }
+
 }

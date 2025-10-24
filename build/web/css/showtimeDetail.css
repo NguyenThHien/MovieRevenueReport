@@ -1,137 +1,136 @@
-/* Toàn bộ trang */
+/* General CSS */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 40px;
-}
-
-/* Container */
-.container {
-    background: #fff;
-    padding: 35px 40px;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
-    animation: fadeIn 0.6s ease-in-out;
-    width: 100%;
-    max-width: 1000px;
-    box-sizing: border-box;
-}
-
-/* Tiêu đề */
-.right-panel h2 {
-    margin-bottom: 25px;
-    color: #444;
-    font-size: 1.6rem;
-    text-align: center;
-}
-
-.highlight {
-    color: #ff4d94;
-    font-weight: 600;
-}
-
-/* Thông tin suất chiếu */
-.showtime-info {
-    margin-bottom: 25px;
-    font-size: 1rem;
-    line-height: 1.6;
+    background-color: #f4f7fc;
     color: #333;
 }
 
-.showtime-info p {
-    margin: 6px 0;
+/* Header Styles */
+.main-header {
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
 }
+.main-header .nav-links,
+.main-header .user-actions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.main-header a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.main-header a:hover { color: #007bff; }
+.main-header .user-info { font-weight: bold; }
+.main-header .user-actions form { margin: 0; } /* Reset form margin */
+.logout-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+}
+.logout-button:hover { color: #007bff; }
 
-/* Bảng */
+/* Container and Content Styles */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    color: #0056b3;
+    font-size: 24px;
+    line-height: 1.4;
+}
+h2 .highlight { color: #17a2b8; }
+h2 small { font-size: 0.7em; color: #555; display: block; margin-top: 5px; } /* Style for date range */
+
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-top: 25px;
 }
-
-table th, table td {
-    padding: 12px 15px;
+th, td {
+    padding: 14px 16px;
     text-align: left;
-    font-size: 0.95rem;
+    border-bottom: 1px solid #ddd;
 }
-
-table th {
-    background: linear-gradient(135deg, #ff92b6, #ff7eb3);
-    color: #fff;
-    font-weight: 600;
+thead th {
+    background-color: #e9ecef;
+    font-weight: bold;
+    color: #495057;
 }
+tbody tr:hover { background-color: #f1f1f1; }
+tbody tr[data-form-id] { cursor: pointer; } /* Add pointer for clickable rows */
+td.no-data { text-align: center; color: #666; padding: 20px; } /* Style for "No data" */
 
-table tr:nth-child(even) {
-    background: #f9f9f9;
-}
-
-table tr:hover {
-    background: #fff0f5;
-    transition: 0.3s;
-}
-
-/* Pagination */
+/* Pagination Styles */
 .pagination {
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 8px;
 }
-
-.pagination button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #ff92b6, #ff7eb3);
+.pagination a {
+    color: #007bff;
+    padding: 8px 14px;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer; /* Make it look clickable */
+    transition: background-color 0.3s, color 0.3s;
+}
+.pagination a:hover { background-color: #e9ecef; border-color: #ced4da; }
+.pagination a.active {
+    background-color: #007bff;
     color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-    box-shadow: 0 3px 8px rgba(255,118,165,0.3);
+    border-color: #007bff;
+    pointer-events: none; /* Disable click on active page */
+}
+.pagination a.disabled {
+    color: #6c757d;
+    pointer-events: none; /* Disable click */
+    background-color: #fff;
+    border-color: #dee2e6;
 }
 
-.pagination button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(255,118,165,0.5);
-}
-
-/* Nút Back */
+/* Button Container and Back Button */
 .btn-container {
-    text-align: center;
-    margin-top: 15px;
+    margin-top: 30px;
+    text-align: right; /* Align button to the right */
 }
-
 .btn-back {
-    padding: 10px 28px;
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 25px;
     border: none;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #b0a8b9, #8a7f8f); /* xám hồng nhẹ */
-    color: #fff;
-    font-weight: 600;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
 }
-
-.btn-back:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(176, 168, 185, 0.4);
-    background: linear-gradient(135deg, #9f93a6, #7f7385);
-}
-
-/* Hiệu ứng fadeIn */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
+.btn-back:hover { background-color: #5a6268; }

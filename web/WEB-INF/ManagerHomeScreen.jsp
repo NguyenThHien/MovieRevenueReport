@@ -1,34 +1,40 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Manager"%>
-<%
-    // Lấy thông tin manager từ session
-    Manager manager = (Manager) session.getAttribute("loggedManager");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Manager Home</title>
-    <link rel="stylesheet" href="css/managerHome.css">
+    <link rel="stylesheet" href="css/ManagerHome.css">
 </head>
 <body>
-    <div class="container">
-        <div class="profile">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Manager Avatar">
-            <span><%= manager.getFullName() %></span>
-        </div>
 
-        <h1>Manager Home</h1>
+    <header class="main-header">
+        <ul class="nav-links">
+            <li><a href="index.jsp">Home</a></li>
+            
+            <c:if test="${not empty sessionScope.loggedManager}">
+                <li><a href="managerHome.jsp">Admin Page</a></li>
+            </c:if>
+        </ul>
+
+        <ul class="user-actions">
+            <li><span class="user-info">Hello, ${sessionScope.loggedManager.fullName}</span></li>
+            <li>
+                <form action="LogoutServlet" method="post">
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Manager Dashboard</h1>
 
         <div class="menu">
             <form action="StatServlet" method="get">
                 <button type="submit">View Report</button>
-            </form>
-
-            
-            <form action="LogoutServlet" method="post">
-                <button type="submit" class="logout-btn">Logout</button>
             </form>
         </div>
     </div>

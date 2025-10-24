@@ -6,7 +6,7 @@ body {
     color: #333;
 }
 
-/* Header Styles */
+/* ============== 1. Header Styles ============== */
 .main-header {
     background-color: #ffffff;
     color: #333;
@@ -47,9 +47,9 @@ body {
 }
 .logout-button:hover { color: #007bff; }
 
-/* Container and Content Styles */
+/* ============== 2. Page Content Styles ============== */
 .container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 30px auto;
     background-color: #fff;
     padding: 30px;
@@ -59,35 +59,56 @@ body {
 h2 {
     margin-top: 0;
     border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     color: #0056b3;
-    font-size: 24px;
-    line-height: 1.4;
+    font-size: 22px; /* Slightly smaller */
 }
-h2 .highlight { color: #17a2b8; }
-h2 small { font-size: 0.7em; color: #555; display: block; margin-top: 5px; } /* Style for date range */
+h2 .highlight {
+    color: #dc3545; /* Red highlight for Showtime ID */
+    font-weight: bold;
+}
+h3 {
+    margin-top: 30px;
+    color: #333;
+    font-size: 20px;
+}
+
+/* Showtime Info Box */
+.showtime-info {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 15px 25px; /* Row and column gap */
+}
+.showtime-info p { margin: 0; font-size: 16px; line-height: 1.5; }
+.showtime-info p strong { color: #555; display: inline-block; min-width: 130px; } /* Align labels */
 
 /* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 th, td {
-    padding: 14px 16px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* Align content vertically */
 }
 thead th {
     background-color: #e9ecef;
     font-weight: bold;
     color: #495057;
 }
-tbody tr:hover { background-color: #f1f1f1; }
-tbody tr[data-form-id] { cursor: pointer; } /* Add pointer for clickable rows */
-td.no-data { text-align: center; color: #666; padding: 20px; } /* Style for "No data" */
+tbody tr:nth-child(even) { background-color: #f8f9fa; }
+tbody tr:hover { background-color: #e2e6ea; } /* Slightly darker hover */
+td.no-data { text-align: center; color: #666; padding: 20px; }
 
-/* Pagination Styles */
+/* ============== 3. Pagination Styles ============== */
 .pagination {
     margin-top: 25px;
     display: flex;
@@ -101,7 +122,7 @@ td.no-data { text-align: center; color: #666; padding: 20px; } /* Style for "No 
     text-decoration: none;
     border: 1px solid #dee2e6;
     border-radius: 4px;
-    cursor: pointer; /* Make it look clickable */
+    cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 .pagination a:hover { background-color: #e9ecef; border-color: #ced4da; }
@@ -109,19 +130,19 @@ td.no-data { text-align: center; color: #666; padding: 20px; } /* Style for "No 
     background-color: #007bff;
     color: white;
     border-color: #007bff;
-    pointer-events: none; /* Disable click on active page */
+    pointer-events: none;
 }
 .pagination a.disabled {
     color: #6c757d;
-    pointer-events: none; /* Disable click */
+    pointer-events: none;
     background-color: #fff;
     border-color: #dee2e6;
 }
 
-/* Button Container and Back Button */
+/* ============== 4. Button Styles ============== */
 .btn-container {
     margin-top: 30px;
-    text-align: right; /* Align button to the right */
+    text-align: right;
 }
 .btn-back {
     background-color: #6c757d;
