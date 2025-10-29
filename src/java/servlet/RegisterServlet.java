@@ -61,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("message", "Registration successful! You can now log in.");
                 request.getRequestDispatcher("/CustomerHomeScreen.jsp").forward(request, response);
             } else {
-                request.setAttribute("error", "Registration failed. Please try again.");
+                request.setAttribute("error","Username, email, or phone number already exists. Please try again.");
                 request.getRequestDispatcher("/WEB-INF/MemberRegistrationPage.jsp").forward(request, response);
             }
 

@@ -38,7 +38,7 @@ public class STDetailServlet extends HttpServlet {
         int movieReportPage = 1;
         int showtimeListPage = 1; // Trang của danh sách suất chiếu (trang trước)
         int currentInvoicePage = 1; // Trang hiện tại của servlet này (danh sách hóa đơn)
-        int recordsPerInvoicePage = 1; // hóa đơn/trang
+        int recordsPerInvoicePage = 5; // hóa đơn/trang
         Date screeningDate = null;
         Time startTime = null;
         Time endTime = null;

@@ -27,7 +27,7 @@ public class MovieServlet extends HttpServlet {
             String fromDateStr = request.getParameter("fromDate");
             String toDateStr = request.getParameter("toDate");
             String pageStr = request.getParameter("page");
-            int recordsPerPage = 3; 
+            int recordsPerPage = 5; 
             int currentPage = 1;
             if (pageStr != null && !pageStr.isEmpty()) {
                 try {

@@ -83,12 +83,15 @@
                     <h4>Grand Total Revenue: 
                         <fmt:formatNumber value="${grandTotalRevenue}" type="number" groupingUsed="true" maxFractionDigits="0"/> VND
                     </h4>
+                    
                 </div>
+               
+                    <h4 style="font-style : italic"> Click on a row to see detailed revenue for this movie. </h4>
             </c:if>
 
             <table>
                 <thead>
-                    <tr><th>No.</th><th>Movie ID</th><th>Title</th><th>Total Revenue (VND)</th></tr>
+                    <tr><th>No.</th><th>Movie ID</th><th>Title</th><th>Total Revenue (VND)</th> <th> Release Date </th> </tr>
                 </thead>
                 <tbody>
                     <c:choose>
@@ -110,6 +113,7 @@
                                     <td>${m.movieID}</td>
                                     <td><c:out value="${m.title}"/></td>
                                     <td><fmt:formatNumber value="${m.totalRevenue}" type="number" groupingUsed="true" maxFractionDigits="0"/></td>
+                                    <td> ${m.releaseDate} </td>
                                 </tr>
                             </c:forEach>
                         </c:when>

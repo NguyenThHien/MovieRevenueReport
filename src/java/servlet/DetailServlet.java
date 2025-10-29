@@ -26,7 +26,7 @@ public class DetailServlet extends HttpServlet {
         int movieID = 0;
         int moviePage = 1; // Trang của Movie Report
         int currentPage = 1; // Trang hiện tại của servlet này (danh sách suất chiếu)
-        int recordsPerPage = 3; //  suất chiếu/trang
+        int recordsPerPage = 5; //  suất chiếu/trang
         Date startDate = null;
         Date endDate = null;
 

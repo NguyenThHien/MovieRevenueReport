@@ -21,7 +21,9 @@ public class StatMovieDAO {
              SELECT 
                  m.id AS movieID,
                  m.title,
+                 m.releaseDate,
                  SUM(CASE WHEN DATE(i.issueDate) BETWEEN ? AND ? THEN i.totalAmount ELSE 0 END) AS totalRevenue
+                     
              FROM 
                  tblMovie m
              JOIN (
@@ -45,7 +47,7 @@ public class StatMovieDAO {
              HAVING 
                  totalRevenue > 0
              ORDER BY 
-                 totalRevenue DESC, m.id ASC
+                 m.releaseDate DESC, m.id ASC
              LIMIT ? OFFSET ? 
              """;
 
@@ -61,6 +63,7 @@ public class StatMovieDAO {
                 sm.setMovieID(rs.getInt("movieID"));
                 sm.setTitle(rs.getString("title"));
                 sm.setTotalRevenue(rs.getFloat("totalRevenue"));
+                sm.setReleaseDate(rs.getDate("releaseDate"));
                 list.add(sm);
             }
         } catch (SQLException e) {

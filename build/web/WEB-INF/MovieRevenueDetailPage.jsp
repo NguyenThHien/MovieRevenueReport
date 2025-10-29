@@ -50,7 +50,7 @@
                 <small>(from <c:out value="${fromDate}"/> to <c:out value="${toDate}"/>)</small>
             </c:if>
         </h2>
-
+        <h4 style="font-style : italic"> Click on a row to see detailed revenue for this movie. </h4>
         <%-- Form ẩn cho phân trang CỦA TRANG NÀY --%>
         <form id="paginationForm" action="DetailServlet" method="post" style="display: none;">
             <input type="hidden" id="pageInput" name="page" value="${currentPage}">
