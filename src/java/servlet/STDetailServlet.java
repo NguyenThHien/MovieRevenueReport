@@ -18,7 +18,7 @@ public class STDetailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Khởi tạo giá trị mặc định
+        
         String movieTitle = request.getParameter("movieTitle");
         String screeningDateStr = request.getParameter("screeningDate");
         String startTimeStr = request.getParameter("startTime");
@@ -32,6 +32,7 @@ public class STDetailServlet extends HttpServlet {
         String invoicePageStr = request.getParameter("page"); // Trang hiện tại của HÓA ĐƠN
         String movieReportPageStr = request.getParameter("moviePage"); // Trang của MovieReport
         String showtimeListPageStr = request.getParameter("showtimeListPage"); // Trang của DetailServlet
+        String totalRevenueString = request.getParameter("totalRevenue2");
 
         int showtimeID = 0;
         int movieID = 0;
@@ -43,6 +44,7 @@ public class STDetailServlet extends HttpServlet {
         Time startTime = null;
         Time endTime = null;
         double totalRevenue = 0;
+        double totalShowTimeRevenue = 0;
 
         try {
             // Parse các tham số
@@ -55,9 +57,9 @@ public class STDetailServlet extends HttpServlet {
                 startTime = Time.valueOf(startTimeStr);
             }
             if (endTimeStr != null) {
-                 if (endTimeStr.matches("\\d{2}:\\d{2}:\\d{2}")) { // Chấp nhận cả HH:mm:ss
+                 if (endTimeStr.matches("\\d{2}:\\d{2}:\\d{2}")) { 
                    
-                 } else if (endTimeStr.matches("\\d{2}:\\d{2}")) { // Thêm :00 nếu là HH:mm
+                 } else if (endTimeStr.matches("\\d{2}:\\d{2}")) { 
                      endTimeStr += ":00";
                  } else {
                      throw new IllegalArgumentException("Invalid end time format: " + endTimeStr);
@@ -67,6 +69,7 @@ public class STDetailServlet extends HttpServlet {
 
             if (movieIDStr != null) movieID = Integer.parseInt(movieIDStr);
             if (totalRevenueStr != null) totalRevenue = Double.parseDouble(totalRevenueStr);
+            if (totalRevenueString != null) totalShowTimeRevenue = Double.parseDouble(totalRevenueString);
 
             // Parse các số trang trước đó
             if (movieReportPageStr != null) movieReportPage = Integer.parseInt(movieReportPageStr);
@@ -92,6 +95,7 @@ public class STDetailServlet extends HttpServlet {
             request.setAttribute("endTime", endTime);
             request.setAttribute("roomName", roomName);
             request.setAttribute("totalRevenue", totalRevenue);
+            request.setAttribute("showTimeRevenue", totalShowTimeRevenue);
             request.setAttribute("invoiceList", invoiceList);
             request.setAttribute("fromDate", fromDate);
             request.setAttribute("toDate", toDate);
@@ -106,7 +110,7 @@ public class STDetailServlet extends HttpServlet {
             request.setAttribute("totalInvoicePages", totalInvoicePages);
             request.setAttribute("recordsPerInvoicePage", recordsPerInvoicePage);
 
-            request.getRequestDispatcher("/WEB-INF/ShowtimeDetailPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/ShowtimeDetailPage.jsp").forward(request, response);
 
         } catch (IllegalArgumentException | NullPointerException e) { 
              request.setAttribute("error", "Invalid data received from the previous page. Please try again.");
@@ -116,7 +120,7 @@ public class STDetailServlet extends HttpServlet {
              request.setAttribute("toDate", toDate);
              request.setAttribute("page", showtimeListPageStr); 
              request.setAttribute("moviePage", movieReportPageStr); 
-             request.getRequestDispatcher("/WEB-INF/MovieRevenueDetailPage.jsp").forward(request, response); 
+             request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueDetailPage.jsp").forward(request, response); 
         } catch (Exception e) {
              e.printStackTrace();
              request.setAttribute("error", "An unexpected error occurred.");
@@ -126,7 +130,7 @@ public class STDetailServlet extends HttpServlet {
              request.setAttribute("toDate", toDate);
              request.setAttribute("page", showtimeListPageStr);
              request.setAttribute("moviePage", movieReportPageStr);
-             request.getRequestDispatcher("/WEB-INF/MovieRevenueDetailPage.jsp").forward(request, response);
+             request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueDetailPage.jsp").forward(request, response);
         }
     }
 }

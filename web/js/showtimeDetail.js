@@ -1,7 +1,4 @@
-/**
- * Submits the pagination form with the target page number.
- * @param {number} pageNumber - The page number to navigate to.
- */
+
 function goToPage(pageNumber) {
     const pageInput = document.getElementById('pageInput'); // Changed ID for clarity
     const paginationForm = document.getElementById('paginationForm');

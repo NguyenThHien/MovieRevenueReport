@@ -14,7 +14,6 @@ body {
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
 }
-
 .main-header .nav-links,
 .main-header .user-actions {
     list-style: none;
@@ -24,7 +23,6 @@ body {
     gap: 25px;
     align-items: center;
 }
-
 .main-header a {
     color: #333;
     text-decoration: none;
@@ -32,14 +30,9 @@ body {
     font-weight: 500;
     transition: color 0.3s;
 }
-.main-header a:hover {
-    color: #007bff;
-}
-
-.main-header .user-info {
-    font-weight: bold;
-}
-
+.main-header a:hover { color: #007bff; }
+.main-header .user-info { font-weight: bold; }
+.main-header .user-actions form { margin: 0; } /* Reset form margin */
 .logout-button {
     background: none;
     border: none;
@@ -50,9 +43,7 @@ body {
     font-family: Arial, sans-serif;
     font-weight: 500;
 }
-.logout-button:hover {
-    color: #007bff;
-}
+.logout-button:hover { color: #007bff; }
 
 .container {
     max-width: 600px;

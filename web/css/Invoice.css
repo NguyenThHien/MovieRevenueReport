@@ -50,7 +50,7 @@ body {
 /* ============== 2. Page Content Styles ============== */
 .container {
     max-width: 900px;
-    margin: 30px auto;
+    margin: 10px auto;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -73,18 +73,26 @@ h3 {
     font-size: 20px;
 }
 
-/* Showtime Info Box */
+/* === SỬA ĐỔI 1: Bỏ layout grid để các dòng xếp chồng lên nhau === */
 .showtime-info {
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
-    gap: 15px 25px; /* Row and column gap */
+    
 }
-.showtime-info p { margin: 0; font-size: 16px; line-height: 1.5; }
+.showtime-info p { 
+    margin: 0; 
+    font-size: 16px; 
+    line-height: 1.5;
+    
+    margin-bottom: 10px; 
+}
+/* Bỏ khoảng cách cho dòng cuối cùng */
+.showtime-info p:last-child {
+    margin-bottom: 0;
+}
 .showtime-info p strong { color: #555; display: inline-block; min-width: 130px; } /* Align labels */
 
 /* Table Styles */
@@ -104,6 +112,13 @@ thead th {
     font-weight: bold;
     color: #495057;
 }
+
+/* === SỬA ĐỔI 2: Căn phải cho cột tiền (cột 5) === */
+th:nth-child(5), 
+td:nth-child(5) {
+    text-align: right;
+}
+
 tbody tr:nth-child(even) { background-color: #f8f9fa; }
 tbody tr:hover { background-color: #e2e6ea; } /* Slightly darker hover */
 td.no-data { text-align: center; color: #666; padding: 20px; }

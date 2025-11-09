@@ -1,0 +1,184 @@
+/* --- General Settings & Reset --- */
+body, h1, h2, h3, p, form {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #1c1e21; 
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Add padding for smaller screens */
+}
+
+/* --- Register Box --- */
+.register-box {
+    width: 100%;
+    max-width: 800px; /* Increased width for two columns */
+    padding: 25px 35px; /* Increased padding */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dddfe2;
+}
+
+.register-box h2 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #1c1e21;
+    margin-bottom: 25px; /* Increased margin */
+}
+
+/* --- Form Layout --- */
+.form-columns {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 30px;
+}
+
+.form-column {
+    flex: 1;
+    min-width: 300px; /* Ensure columns don't get too narrow */
+}
+
+/* --- Form --- */
+.form-group {
+    margin-bottom: 15px; /* Consistent margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group label .required-star {
+    color: #d93025; /* Red asterisk */
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px #e7f3ff;
+}
+
+/* --- Show Password Checkbox --- */
+.show-password-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
+
+.show-password-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.show-password-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    color: #555;
+    cursor: pointer;
+}
+
+/* --- Gender Radio Buttons --- */
+.gender-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.gender-options input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.gender-options label {
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%; /* Make buttons full-width */
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-secondary {
+    background-color: #e4e6eb;
+    color: #050505;
+}
+.btn-secondary:hover {
+    background-color: #d8dbde;
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* --- Error Messages --- */
+.error {
+    color: #b02a37;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.error-js {
+    color: #d93025;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 4px;
+    min-height: 1.2em; /* Prevents layout shift */
+}

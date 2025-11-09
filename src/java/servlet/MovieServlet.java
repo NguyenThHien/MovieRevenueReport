@@ -17,7 +17,7 @@ public class MovieServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("movieList", null);
-        request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueStatisticPage.jsp").forward(request, response);
     }
 
     @Override
@@ -65,15 +65,15 @@ public class MovieServlet extends HttpServlet {
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("recordsPerPage", recordsPerPage);
 
-            request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueStatisticPage.jsp").forward(request, response);
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", "Please select a valid time period");
-            request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueStatisticPage.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "An unexpected error occurred.");
-            request.getRequestDispatcher("/WEB-INF/MovieRevenueStatisticPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/MovieRevenueStatisticPage.jsp").forward(request, response);
         }
     }
 }

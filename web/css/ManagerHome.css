@@ -4,60 +4,45 @@ body {
     background-color: #f4f4f4;
 }
 
-/* CSS cho header */
 .main-header {
-    background-color: #333;
-    color: white;
+    background-color: #ffffff;
+    color: #333;
     padding: 10px 40px;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #e0e0e0;
 }
-
 .main-header .nav-links,
 .main-header .user-actions {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px; 
+    gap: 25px;
     align-items: center;
 }
-
 .main-header a {
-    color: white;
+    color: #333;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
     transition: color 0.3s;
 }
-
-.main-header a:hover {
-    color: #ddd;
-}
-
-.main-header .user-info {
-    font-weight: bold;
-}
-
-/* CSS cho nút logout trong form */
-.main-header .user-actions form {
-    margin: 0;
-}
-
-.main-header .user-actions .logout-button {
+.main-header a:hover { color: #007bff; }
+.main-header .user-info { font-weight: bold; }
+.main-header .user-actions form { margin: 0; } /* Reset form margin */
+.logout-button {
     background: none;
     border: none;
-    color: white;
+    color: #333;
     font-size: 16px;
     cursor: pointer;
     padding: 0;
-    font-family: Arial, sans-serif; /* Đảm bảo font nhất quán */
+    font-family: Arial, sans-serif;
+    font-weight: 500;
 }
-
-.main-header .user-actions .logout-button:hover {
-    color: #ddd;
-}
-
+.logout-button:hover { color: #007bff; }
 /* CSS cho container */
 .container {
     max-width: 800px;

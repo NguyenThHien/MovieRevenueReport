@@ -167,7 +167,7 @@ public class StatShowTimeDAO {
             ps.setDate(3, endDate);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1); // Lấy giá trị COUNT(*)
+                return rs.getInt(1); 
             }
         } catch (SQLException e) {
             System.err.println("Error getting total showtime count: " + e.getMessage());

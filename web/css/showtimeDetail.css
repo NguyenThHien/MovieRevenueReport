@@ -34,7 +34,7 @@ body {
 }
 .main-header a:hover { color: #007bff; }
 .main-header .user-info { font-weight: bold; }
-.main-header .user-actions form { margin: 0; } /* Reset form margin */
+.main-header .user-actions form { margin: 0; } 
 .logout-button {
     background: none;
     border: none;
@@ -67,7 +67,20 @@ h2 {
 h2 .highlight { color: #17a2b8; }
 h2 small { font-size: 0.7em; color: #555; display: block; margin-top: 5px; } /* Style for date range */
 
-/* Table Styles */
+
+.revenue-summary { 
+    background-color: #e9f5ff; 
+    border-left: 5px solid #007bff; 
+    padding: 15px 20px; 
+    margin: 20px 0; 
+    border-radius: 4px; 
+}
+.revenue-summary h4 { 
+    margin: 0; 
+    font-size: 18px; 
+    color: #0056b3; 
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -75,7 +88,7 @@ table {
 }
 th, td {
     padding: 14px 16px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 thead th {
@@ -84,10 +97,17 @@ thead th {
     color: #495057;
 }
 tbody tr:hover { background-color: #f1f1f1; }
-tbody tr[data-form-id] { cursor: pointer; } /* Add pointer for clickable rows */
-td.no-data { text-align: center; color: #666; padding: 20px; } /* Style for "No data" */
+tbody tr[data-form-id] { cursor: pointer; } 
+td.no-data { text-align: center; color: #666; padding: 20px; } 
 
-/* Pagination Styles */
+
+#showtimeTable th:nth-child(5),
+#showtimeTable td:nth-child(5),
+#showtimeTable th:nth-child(6),
+#showtimeTable td:nth-child(6) {
+    text-align: right;
+}
+
 .pagination {
     margin-top: 25px;
     display: flex;

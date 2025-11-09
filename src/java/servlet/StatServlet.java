@@ -15,6 +15,6 @@ public class StatServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Chuyển hướng (forward) đến trang thống kê
-        request.getRequestDispatcher("/WEB-INF/StatisticMenuPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/StatisticMenuPage.jsp").forward(request, response);
     }
 }

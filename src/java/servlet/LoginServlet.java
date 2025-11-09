@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
     }
 
     @Override
@@ -36,10 +36,10 @@ public class LoginServlet extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("loggedManager", manager);
-            request.getRequestDispatcher("/WEB-INF/ManagerHomeScreen.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/ManagerHomeScreen.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Invalid username or password.");
-            request.getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
         }
     }
 }
