@@ -1,0 +1,10 @@
+
+# Thư mục chứa các file .class đã được biên dịch
+/build/
+
+# Thư mục chứa các file deploy (thường là .war)
+/dist/
+
+# Thư mục chứa file cấu hình của NetBeans
+# Rất quan trọng, không bao giờ push thư mục này
+/nbproject/

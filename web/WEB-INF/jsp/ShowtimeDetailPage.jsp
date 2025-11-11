@@ -53,7 +53,7 @@
 
             <div class="showtime-info">
                 <p><strong>Movie Title:</strong> <c:out value="${movieTitle}"/></p>
-                <p><strong>Screening Date:</strong> <fmt:formatDate value="${screeningDate}" pattern="yyyy-MM-dd" /></p>
+                <p><strong>Screening Date:</strong> <fmt:formatDate value="${screeningDate}" pattern="dd-MM-yyyy" /></p>
                 <p><strong>Time:</strong>
                     <fmt:formatDate value="${startTime}" pattern="HH:mm" /> - <fmt:formatDate value="${endTime}" pattern="HH:mm" />
                 </p>
